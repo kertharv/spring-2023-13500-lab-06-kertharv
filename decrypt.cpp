@@ -41,13 +41,16 @@ char shift_char_uncipher(char c, int rshift)
             if(c == upper[i] && i - shift > 25) 
             {
                 return upper[(i - shift) - 26];
-            } else if(c == lower[i] && i - shift > 25) 
+            } 
+            else if(c == lower[i] && i - shift > 25) 
             { 
                 return lower[(i - shift) - 26];
-            } else if(upper[i] == c) 
+            } 
+            else if(upper[i] == c) 
             { 
                 return upper[i - shift]; 
-            } else if(lower[i] == c) 
+            } 
+            else if(lower[i] == c) 
             { 
                 return lower[i - shift];
             }
@@ -61,13 +64,16 @@ char shift_char_uncipher(char c, int rshift)
             if(c == upper[i] && i - shift < 0) 
             {
                 return upper[26 - (shift - i)];
-            } else if(c == lower[i] && i - shift < 0) 
+            } 
+            else if(c == lower[i] && i - shift < 0) 
             { 
                 return lower[26 - (shift - i)];
-            } else if(upper[i] == c) 
+            } 
+            else if(upper[i] == c) 
             { 
                 return upper[i - shift]; 
-            } else if(lower[i] == c) 
+            } 
+            else if(lower[i] == c) 
             { 
                 return lower[i - shift];
             } 
