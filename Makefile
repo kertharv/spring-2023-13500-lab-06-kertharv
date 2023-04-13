@@ -1,30 +1,20 @@
-DOTOFILES= funcs.o caesar.o vigenere.o decrypt.o
+CXXFLAGS=--coverage -g -O0
 
-main: main.o $(DOTOFILES)
-	g++ -o main main.o $(DOTOFILES)
+main: main.o funcs.o
+	g++ -o main --coverage -g -O0 main.o funcs.o
 
-test-ascii: test-ascii.o
-	g++ -o test-ascii test-ascii.o
+tests: tests.o funcs.o
+	g++ -o tests --coverage -g -O0 tests.o funcs.o
+	gcovr 2> /dev/null > /dev/null
+	gcovr --html-details coverage.html
 
-tests: tests.o $(DOTOFILES)
-	g++ -o tests tests.o $(DOTOFILES)
 
-main.o: main.cpp funcs.h caesar.h vigenere.h decrypt.h
-
-tests.o: tests.cpp doctest.h funcs.h caesar.h vigenere.h decrypt.h
 
 funcs.o: funcs.cpp funcs.h
 
-test-ascii.o: test-ascii.cpp
+main.o: main.cpp funcs.h
 
-caesar.o: caesar.cpp caesar.h
-
-vigenere.o: vigenere.cpp vigenere.h
-
-decrypt.o: decrypt.cpp decrypt.h
+tests.o: tests.cpp doctest.h funcs.h
 
 clean:
-	rm -f $(DOTOFILES) main.o tests.o test-ascii.o
-
-removeexec:
-	rm -f main tests test-ascii
+	rm -f main.o funcs.o tests.o *gcda *html *gcno *css
